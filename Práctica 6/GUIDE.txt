@@ -1,0 +1,139 @@
+
+
+SOLARIS
+
+Buscar paquetes software:
+
+	pkg search <nombre>
+
+Instalar paquetes:
+	
+	pkg install <nombre>
+
+Actualizar lista de paquetes:
+
+	pkg refresh
+
+
+
+OPENBSD
+
+Listar paquetes:
+
+	pkg_info
+
+Instalar paquetes:
+
+	pkg_add <nombre>
+
+OpenBSD además tiene los ports (en /usr/ports), que es un conjunto de makefiles que podemos descargar, compilar
+y ejecutar.
+
+Para descargar los ports podemos descargarlos de https://cd.openbsd.org/pub/OpenBSD/6.8/
+
+Una vez lo compilamos (con make) el paquete se nos añade a la lista de paquetes del sistema 
+(podemos comprobar con pkg_info).
+
+
+
+FREEBSD
+
+Buscar e instalar paquetes:
+
+	pkg search <nombre>
+	pkg install <nombre>
+
+En FreeBSD ya tenemos los ports instalados (los instalamos durante las instalación).
+Compilar e instalar un port:
+	
+	cd /usr/ports/<nombre>
+	make install
+
+
+
+UBUNTU
+
+En Linux hay un problema, los paquetes dependen del sistema, puede darse el caso de 
+que, cuando queremos instalar una nueva versión de un paquete, no podamos instalarla
+por la distribución de Linux que tenemos (nos empezarán a empezar un montón de 
+dependencias y problemas).
+
+Solución: Los snaps
+
+Los snaps NO tienen dependencias, ya incluyen todos los ficheros necesarios para 
+ejecutar el programa.
+
+Para instalar snaps:
+
+	snap install <nombre>
+FEDORA
+
+Buscar e instalar paquetes (también se puede usar yum):
+
+	dnf search <nombre>
+	dnf install <nombre>
+
+
+
+ENTORNOS DE VIRTUALIZACIÓN
+
+JAILS
+
+Un proceso solo conoce el directorio en el que está y el directorio raíz
+
+chroot cambia el directorio de raíz para un proceso, cambiándolo podemos
+"confinar" a un proceso dentro de un directorio (jail).
+
+chdir cambia el directorio en el que piensa que está el proceso.
+
+Definimos una jaula en /etc/jail.conf y la arrancamos:
+
+	jail -c <nombre>
+
+	o
+	
+	service jail onestart <nombre>
+
+La jail es como una máquina virtual, pero SIN DISCO VIRTUALIZADO, se 
+ejecuta bajo un directorio, se monta un sistema de ficheros bajo ese
+directorio.
+
+Si queremos que se inicien apache y ssh en el arranque de la jail es 
+como en una máquina normal:
+
+Editamos el fichero <path jail>/etc/rc.conf y añadimos:
+
+	apache_24_enable=yes
+	sshd_enable=yes
+
+Las jails son recursivas, dentro de una jail puede haber otra jail.
+
+
+
+SOLARIS ZONES
+
+En Solaris existen las zonas en vez de jails.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
